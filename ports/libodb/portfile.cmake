@@ -8,13 +8,22 @@
 
 include(vcpkg_common_functions)
 include(CMakePackageConfigHelpers)
-set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/libodb-2.4.0)
-vcpkg_download_distfile(ARCHIVE
-    URLS "http://www.codesynthesis.com/download/odb/2.4/libodb-2.4.0.tar.gz"
-    FILENAME "libodb-2.4.0.tar.gz"
-    SHA512 f1311458634695eb6ba307ebfd492e3b260e7beb06db1c5c46df58c339756be4006322cdc4e42d055bf5b2ad14ce4656ddcafcc4e16c282034db8a77d255c3eb
+#set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/libodb-2.4.0)
+# vcpkg_download_distfile(ARCHIVE
+#     URLS "http://www.codesynthesis.com/download/odb/2.4/libodb-2.4.0.tar.gz"
+#     FILENAME "libodb-2.4.0.tar.gz"
+#     SHA512 f1311458634695eb6ba307ebfd492e3b260e7beb06db1c5c46df58c339756be4006322cdc4e42d055bf5b2ad14ce4656ddcafcc4e16c282034db8a77d255c3eb
+# )
+set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/2.5.0-b9-30191b6574)
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO Praying/libodb 
+    REF 2.5.0-b9
+    SHA512 570cf84597ba08dc104bd8ae248269e249472902b4c13ee9cf2337bfa720cada71f400c0678ed34e7586eaac03d3ffbadc941e9c938391e02b4d96881360743d
+    HEAD_REF master
 )
-vcpkg_extract_source_archive(${ARCHIVE})
+
+#vcpkg_extract_source_archive(${ARCHIVE})
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt DESTINATION ${SOURCE_PATH})
 vcpkg_configure_cmake(
     SOURCE_PATH ${SOURCE_PATH}
